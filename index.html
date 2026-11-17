@@ -565,7 +565,7 @@ function showProfileFeedback(type,title,message){
  box.classList.add("show");profileFeedbackTimer=setTimeout(()=>box.classList.remove("show"),3200);
 }
 
-let profilePhoneDemoCode="123456";
+let profilePhoneDemoCode="122234";
 function maskPhoneNumber(phone){const digits=String(phone||"").replace(/\D/g,"");if(!digits)return "ফোন নম্বর পাওয়া যায়নি";return "••••••"+digits.slice(-4)}
 function sendProfilePhoneCode(){
  const phone=localStorage.getItem("chatwave-phone")||"";
