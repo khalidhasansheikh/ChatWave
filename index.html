@@ -861,6 +861,62 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closePhotoCh
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
-</body>
+<script type="module">
+  // ১. ফায়ারবেস এসডিকে ফাংশনগুলো ইমপোর্ট করা
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js";
+  import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+  // ২. আপনার ফায়ারবেস কনফিগারেশন (আপনার প্রজেক্টের আসল কোড)
+  const firebaseConfig = {
+    apiKey: "AIzaSyDco6dIGPEzs9zLaPse_mLWQtEh1kLCEs8",
+    authDomain: "chatwave-3767a.firebaseapp.com",
+    projectId: "chatwave-3767a",
+    storageBucket: "chatwave-3767a.firebasestorage.app",
+    messagingSenderId: "340567316205",
+    appId: "1:340567316205:web:1b289b8f48ab24c9a69ee4",
+    measurementId: "G-C1FD0P2228"
+  };
+
+  // ৩. ফায়ারবেস ইনিশিয়ালাইজ করা
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+
+  // ৪. reCAPTCHA ভেরিফিকেশন সেটআপ
+  window.recaptchaVerifier = new RecaptchaVerifier(auth, 'sendOtpBtn', {
+    'size': 'invisible',
+    'callback': (response) => {
+      sendOTP();
+    }
+  });
+
+  // ৫. ওটিপি পাঠানোর ফাংশন
+  window.sendOTP = function() {
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const appVerifier = window.recaptchaVerifier;
+
+    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        alert("আপনার নম্বরে ওটিপি পাঠানো হয়েছে!");
+      }).catch((error) => {
+        console.error("OTP পাঠানোর ব্যর্থতা:", error);
+        alert("সমস্যা হয়েছে: " + error.message);
+      });
+  };
+
+  // ৬. ওটিপি ভেরিফাই করে লগইন করার ফাংশন
+  window.verifyOTP = function() {
+    const code = document.getElementById('otpCode').value;
+    
+    window.confirmationResult.confirm(code).then((result) => {
+      const user = result.user;
+      alert("লগইন সফল হয়েছে!");
+    }).catch((error) => {
+      alert("ভুল ওটিপি কোড! আবার চেষ্টা করুন।");
+    });
+  };
+</script></body>
 </html>
 
