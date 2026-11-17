@@ -838,7 +838,29 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closePhotoCh
   <button type="button" onclick="chooseProfilePhoto('camera')"><span>📷</span><span><b>Camera</b><small>ক্যামেরা দিয়ে নতুন ছবি তুলুন</small></span></button>
   <button type="button" class="photo-chooser-cancel" onclick="closePhotoChooser()">বাতিল</button>
  </div>
-</div>
+</div><script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDco6dIGPEzs9zLaPse_mLWQtEh1kLCEs8",
+    authDomain: "chatwave-3767a.firebaseapp.com",
+    projectId: "chatwave-3767a",
+    storageBucket: "chatwave-3767a.firebasestorage.app",
+    messagingSenderId: "340567316205",
+    appId: "1:340567316205:web:1b289b8f48ab24c9a69ee4",
+    measurementId: "G-C1FD0P2228"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
 
