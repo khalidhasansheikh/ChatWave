@@ -917,6 +917,13 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")closePhotoCh
       alert("ভুল ওটিপি কোড! আবার চেষ্টা করুন।");
     });
   };
-</script></body>
+</script>dependencies {
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:35.2.0"))
+
+    // Add the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
+}</body>
 </html>
 
